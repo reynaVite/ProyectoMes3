@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Jesus Antonio Ramirez Hernandez \n 20210700 \n 9 B "
+    return render_template('home.html', nombre='Mundo')
 
 if __name__ =='__main__':
     app.run(debug=True)
