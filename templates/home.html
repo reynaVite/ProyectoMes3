@@ -4,57 +4,101 @@
     <title>Hola Mundo</title>
     <style>
         body {
-            background-color: lightblue;
+            background-color: #f0f8ff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            top: 50%;
-        }
-        h1, h2, h3 {
-            color: navy;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            text-align: center;
+            padding: 0 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
         }
         .container {
             text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+        .profile-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            position: absolute;
+            top: -35px;
+            left: calc(50% - 35px);
+            border: 2px solid white;
+        }
+        h1, h2, h3 {
+            color: #003366;
+            margin: 0.5em 0;
         }
         button {
-            display: block;
+            display: inline-block;
             margin: 20px auto;
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 100px;
-            background-color: blueviolet;
-            font-weight: bolder;
+            border-radius: 25px;
+            background-color: #8a2be2;
+            font-weight: bold;
             color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #6a1bbd;
         }
         img {
             max-width: 50%;
             height: auto;
-            margin: 20px 0;
-            border-radius: 14%;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        @media (max-width: 600px) {
+            h1, h2, h3 {
+                font-size: 1.2em;
+            }
+            button {
+                width: 100%;
+                padding: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="./yopuesquienma.jpg" alt="Icono de perfil" class="profile-icon">
         <h1>Jesus Antonio Ramirez Hernandez</h1>
         <h2>20210700</h2>
         <h3>Tarea 05/06/2024 </h3>
-        <h3> 9 Cuatrimestre Gurpo B</h3>
+        <h3>9 Cuatrimestre Grupo B</h3>
         <br><br>
-        <img src="https://i.pinimg.com/564x/45/60/0c/45600c78256a9adeed72e1639740f2f5.jpg" alt="Imagen descriptiva">
-        <h1>Extraccion de conocimiento en bases de datos</h1>
-        <button onclick="mostrarInformacion()">Mostrar Informacion</button>
+        <h1>Extracción de conocimiento en bases de datos</h1>
+        <button id="toggleButton" onclick="mostrarOcultarImagen()">Mostrar Imagen</button>
+    </div>
+    <div>
+        <img id="imagen" src="https://i.pinimg.com/736x/52/7f/eb/527febe00a7a9d768e07638382e8821f.jpg" alt="Imagen descriptiva">
     </div>
 
     <script>
-        function mostrarInformacion() {
-            alert("Hola doctor, lo quiero mucho, nunca cambie, vale mil xoxo");
+        function mostrarOcultarImagen() {
+            var img = document.getElementById("imagen");
+            var button = document.getElementById("toggleButton");
+            if (img.style.display === "none" || img.style.display === "") {
+                img.style.display = "block";
+                button.innerHTML = "Ocultar Imagen";
+            } else {
+                img.style.display = "none";
+                button.innerHTML = "Mostrar Imagen";
+            }
         }
     </script>
 </body>
