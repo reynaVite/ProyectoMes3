@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Categoría</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            width: 400px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .prediction {
+            margin-top: 20px;
+            margin-left: 150px;
+            font-weight: bold;
+            text-align: center;
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="post">
+        <h1>Predicción de Categoría</h1>
+        <label for="Age">Edad:</label>
+        <input type="text" id="Age" name="Age" placeholder="Ingrese su edad" required><br>
+        
+        <label for="Height">Altura (cm):</label>
+        <input type="text" id="Height" name="Height" placeholder="Ingrese su altura en cm" required><br>
+        
+        <label for="Weight">Peso (kg):</label>
+        <input type="text" id="Weight" name="Weight" placeholder="Ingrese su peso en kg" required><br>
+        
+        <label for="FAF">Frecuencia de Actividad Física:</label>
+        <input type="text" id="FAF" name="FAF" placeholder="Frecuencia de actividad física semanal" required><br>
+        
+        <label for="TUE">Tiempo Usado en Entretenimiento (min/día):</label>
+        <input type="text" id="TUE" name="TUE" placeholder="Tiempo de entretenimiento diario" required><br>
+        
+        <label for="CAEC">Consumo de Comida entre Comidas:</label>
+        <input type="text" id="CAEC" name="CAEC" placeholder="Consumo de comida entre comidas" required><br>
+        
+        <input type="submit" value="Predecir">
+    </form>
+    <div class="prediction">
+        <h2>Predicción de Categoría:</h2>
+        {% if prediction %}
+        <div>{{ prediction }}</div>
+        {% endif %}
+        <table>
+            <tr>
+                <th>Categoría</th>
+                <th>Traducción</th>
+            </tr>
+            <tr>
+                <td>Normal_Weight</td>
+                <td>Peso Normal</td>
+            </tr>
+            <tr>
+                <td>Overweight_Level_I</td>
+                <td>Sobrepeso Nivel I</td>
+            </tr>
+            <tr>
+                <td>Overweight_Level_II</td>
+                <td>Sobrepeso Nivel II</td>
+            </tr>
+            <tr>
+                <td>Obesity_Type_I</td>
+                <td>Obesidad Tipo I</td>
+            </tr>
+            <tr>
+                <td>Insufficient_Weight</td>
+                <td>Peso Insuficiente</td>
+            </tr>
+            <tr>
+                <td>Obesity_Type_II</td>
+                <td>Obesidad Tipo II</td>
+            </tr>
+            <tr>
+                <td>Obesity_Type_III</td>
+                <td>Obesidad Tipo III</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
