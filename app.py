@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 import joblib
 import pandas as pd
 
-ordinal_encoder = joblib.load('modelo_OrdinalEncoder.pkl')
+ordinal_encoder = joblib.load('modelo_ordinalEncoder.pkl')
 scaler = joblib.load('modelo_StandarScaler.pkl')
 pca = joblib.load('modelo_PCA.pkl')
 model = joblib.load('modelo_RandomForest.pkl')
