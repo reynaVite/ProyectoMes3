@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Predicción de Precio de Aviones</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Predicción</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-            color: #333;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,72 +16,89 @@
         }
         .container {
             background-color: #fff;
-            padding: 20px 40px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
             max-width: 500px;
             width: 100%;
         }
         h1 {
-            color: #6a0dad;
-            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
         }
         label {
-            display: block;
-            margin: 15px 0 5px;
-            color: #6a0dad;
+            margin-top: 10px;
+            color: #555;
         }
-        input[type="text"], input[type="submit"] {
-            width: 100%;
+        select, button {
             padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        input[type="submit"] {
-            background-color: #6a0dad;
+        button {
+            background-color: #007bff;
             color: #fff;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
-        input[type="submit"]:hover {
-            background-color: #5a0cab;
+        button:hover {
+            background-color: #0056b3;
         }
         .prediction {
             margin-top: 20px;
-            font-size: 18px;
-            color: #6a0dad;
+            text-align: center;
+            font-size: 1.2em;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Predicción de Precio de Aviones</h1>
-        <form action="/" method="post">
-            <label for="HP">Potencia o Empuje por cada Motor (HP or lbs thr ea engine):</label>
-            <input type="text" id="HP" name="HP">
-            
-            <label for="MaxSpeed">Velocidad Máxima (Max speed Knots):</label>
-            <input type="text" id="MaxSpeed" name="MaxSpeed">
-            
-            <label for="CruiseSpeed">Velocidad de Crucero (Rcmnd cruise Knots):</label>
-            <input type="text" id="CruiseSpeed" name="CruiseSpeed">
-            
-            <label for="RateOfClimbAllEng">Tasa de Ascenso con Todos los Motores (All eng rate of climb):</label>
-            <input type="text" id="RateOfClimbAllEng" name="RateOfClimbAllEng">
-            
-            <label for="RateOfClimbOneEng">Tasa de Ascenso con un Motor Fuera (Eng out rate of climb):</label>
-            <input type="text" id="RateOfClimbOneEng" name="RateOfClimbOneEng">
-            
-            <input type="submit" value="Predecir">
+        <h1>Formulario de Predicción</h1>
+        <form method="POST">
+            <label for="habilidad_lectura">Habilidad de Lectura:</label>
+            <select id="habilidad_lectura" name="habilidad_lectura" required>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="habilidad_escritura">Habilidad de Escritura:</label>
+            <select id="habilidad_escritura" name="habilidad_escritura" required>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="habilidad_matematicas">Habilidad en Matemáticas:</label>
+            <select id="habilidad_matematicas" name="habilidad_matematicas" required>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="participacion">Participación:</label>
+            <select id="participacion" name="participacion" required>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="comportamiento">Comportamiento:</label>
+            <select id="comportamiento" name="comportamiento" required>
+                <option value="Malo">Malo</option>
+                <option value="Regular">Regular</option>
+                <option value="Bueno">Bueno</option>
+            </select>
+
+            <button type="submit">Predecir</button>
         </form>
 
-        {% if prediction is not none %}
+        {% if prediction %}
             <div class="prediction">
-                <h2>Predicción del Precio: {{ prediction }}</h2>
+                <h2>Predicción: {{ prediction }}</h2>
             </div>
         {% endif %}
     </div>

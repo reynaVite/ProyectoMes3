@@ -1,25 +1,19 @@
 from flask import Flask, request, render_template, jsonify
+import joblib
+import pandas as pd
+import logging
 
 app = Flask(__name__)
 
 # Configurar el registro
-import logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Cargar los modelos entrenados
-import joblib
-import pandas as pd
-
-ordinal_encoder = joblib.load('modelo_OrdinalEncoder.pkl')
+ordinal_encoder = joblib.load('modelo_ordinalEncoder.pkl')
 scaler = joblib.load('modelo_StandarScaler.pkl')
 pca = joblib.load('modelo_PCA.pkl')
 model = joblib.load('modelo_RandomForest.pkl')
 app.logger.debug('Modelos cargados correctamente.')
-
-@app.after_request
-def add_security_headers(response):
-    response.headers['Content-Security-Policy'] = "connect-src 'self' http://localhost:3000 http://localhost:5000;"
-    return response
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -41,7 +35,10 @@ def home():
             # Preprocesar los datos
             data_df[['habilidad_lectura', 'habilidad_escritura', 'habilidad_matematicas', 'participacion', 'comportamiento']] = ordinal_encoder.transform(data_df[['habilidad_lectura', 'habilidad_escritura', 'habilidad_matematicas', 'participacion', 'comportamiento']])
             data_df = scaler.transform(data_df)
+            
             data_df = pca.transform(data_df)
+            app.logger.debug(f'Datos preprocesados: {data_df}')
+
             app.logger.debug(f'Datos preprocesados: {data_df}')
 
             # Realizar predicciones
